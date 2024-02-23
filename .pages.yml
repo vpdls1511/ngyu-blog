@@ -1,7 +1,7 @@
 media:
   input: public/assets
   output: /assets
-  categories: [ images ]
+  categories: [ "images" ]
 content:
   - name: posts
     label: Posts
