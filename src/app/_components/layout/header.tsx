@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 
 const Header = () => {
   return (
@@ -8,9 +9,19 @@ const Header = () => {
           {/* 로고 */}
           <Link
             href="/"
-            className="flex items-center space-x-2 font-bold text-xl hover:opacity-80 transition-opacity"
+            className="flex items-center space-x-2 group font-bold text-xl"
           >
-            <span className="text-gray-900 text-xm">ngyu.me</span>
+            {/* 파비콘 */}
+            <Image
+              src="/favicon/blog-favicon.png"
+              alt="ngyu blog favicon"
+              width={35}
+              height={35}
+            />
+            {/* 텍스트: 기본 숨김, hover 시 나타남 */}
+            <span className="text-gray-700 text-sm opacity-0 translate-x-[-10px] group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+          ngyu.me
+        </span>
           </Link>
 
           {/* 우측 네비게이션 */}
