@@ -28,7 +28,7 @@ export function CategoryFilter({ categories, selectedCategory }: Props) {
       {categories.map((category) => (
         <Link
           key={category}
-          href={`/posts/${encodeURIComponent(category)}`}
+          href={`/posts?category=${encodeURIComponent(category)}`}
           className={`
             px-3 py-1.5 rounded-full text-sm transition-colors
             ${
