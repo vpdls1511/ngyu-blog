@@ -31,11 +31,25 @@ async function getHighlighterInstance() {
 }
 
 export default async function markdownToHtml(markdown: string) {
+  // sanitize: false 이미 적용되어 있지만, 한 번 더 확인
   const result = await remark()
-    .use(html, { sanitize: false })
+    .use(html, {
+      sanitize: false,
+      allowDangerousHtml: true  // 추가
+    })
     .process(markdown)
 
   let htmlString = result.toString()
+
+  // HTML 엔티티 디코딩을 먼저 수행
+  htmlString = htmlString
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&#x27;/g, "'")
+    .replace(/&#x3C;/g, '<')  // 추가
+    .replace(/&#x3E;/g, '>')  // 추가
+    .replace(/&amp;/g, '&')   // 마지막에 처리
 
   // 제목에 ID 추가
   htmlString = htmlString.replace(
@@ -43,7 +57,7 @@ export default async function markdownToHtml(markdown: string) {
     (match, level, text) => {
       const id = text
         .toLowerCase()
-        .replace(/<[^>]*>/g, '') // HTML 태그 제거
+        .replace(/<[^>]*>/g, '')
         .replace(/[^a-z0-9가-힣\s-]/g, '')
         .replace(/\s+/g, '-');
       return `<h${level} id="${id}">${text}</h${level}>`;
@@ -60,13 +74,8 @@ export default async function markdownToHtml(markdown: string) {
     for (const match of matches) {
       const [fullMatch, lang, code] = match
 
-      let decodedCode = code
-        .replace(/&lt;/g, '<')
-        .replace(/&gt;/g, '>')
-        .replace(/&quot;/g, '"')
-        .replace(/&#39;/g, "'")
-        .replace(/&amp;/g, '&')
-        .trimEnd()
+      // 이미 전체적으로 디코딩했으므로 추가 디코딩 불필요
+      const decodedCode = code.trimEnd()
 
       try {
         const highlighted = highlighter.codeToHtml(decodedCode, {
