@@ -1,5 +1,3 @@
-import { CMS_NAME } from "@/lib/constants";
-
 export function Intro() {
   return (
     <section className="py-10">

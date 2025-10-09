@@ -1,23 +1,29 @@
-import Container from "@/app/_components/container";
-import { HeroPost } from "@/app/_components/hero-post";
-import { Intro } from "@/app/_components/intro";
-import { MoreStories } from "@/app/_components/more-stories";
-import { getAllPosts } from "../lib/api";
+import Container from '@/app/_components/container'
+import {Intro} from '@/app/_components/home/intro'
+import {getAllPosts} from '@/lib/api'
 import RecentPosts from '@/app/_components/home/recentPosts'
 
 export default function Index() {
-  const allPosts = getAllPosts();
+  const allPosts = getAllPosts()
 
-  const heroPost = allPosts[0];
-
-  const morePosts = allPosts.slice(1);
+  const morePosts = allPosts.slice(0, 10)
 
   return (
     <main>
       <Container>
-        <Intro />
-        <RecentPosts posts={morePosts} />
+        {/* 모바일: 세로 정렬 / 데스크탑(md 이상): 가로 정렬 */}
+        <div className="flex flex-col md:flex-row md:gap-16">
+          {/* Intro */}
+          <div className="w-full md:w-1/2">
+            <Intro/>
+          </div>
+
+          {/* RecentPosts */}
+          <div className="w-full md:w">
+            <RecentPosts posts={morePosts}/>
+          </div>
+        </div>
       </Container>
     </main>
-  );
+  )
 }

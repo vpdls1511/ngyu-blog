@@ -39,6 +39,7 @@ const config: Config = {
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in forwards',
         'fade-in-delay': 'fadeIn 0.5s ease-in 0.2s forwards',
+        'fade-in-delay-three': 'fadeIn 0.5s ease-in 0.4s forwards',
       },
       keyframes: {
         fadeIn: {
@@ -48,6 +49,8 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography'),
+  ],
 };
 export default config;

@@ -7,7 +7,7 @@ const Header = () => {
         <div className="flex items-center justify-between h-16">
           {/* 로고 */}
           <Link
-            href="/src/public"
+            href="/"
             className="flex items-center space-x-2 font-bold text-xl hover:opacity-80 transition-opacity"
           >
             <span className="text-gray-900 text-xm">ngyu.me</span>
