@@ -1,4 +1,6 @@
 // app/posts/page.tsx
+export const dynamic = 'force-dynamic';
+
 import Container from '@/app/_components/container'
 import {getAllPosts, getCategories} from '@/lib/api'
 import {PostCard} from '@/app/_components/posts/post-card'
