@@ -4,20 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ede60f7e-94a0-48fd-b617-cac37823c27e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/app/_components/main/main-header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/nextjs-blog.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/_components/alert.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/_components/header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_components/header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/_components/hero-post.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_components/hero-post.tsx" afterDir="false" />
+    <list default="true" id="ede60f7e-94a0-48fd-b617-cac37823c27e" name="Changes" comment="feat : 싹 다 날리고 헤더 다시 만들기">
+      <change afterPath="$PROJECT_DIR$/src/app/_components/home/recentPosts.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/_components/container.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_components/container.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/_components/header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_components/layout/header.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/_components/intro.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_components/intro.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/_components/main/main-header.tsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/posts/[slug]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/posts/[slug]/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tailwind.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +22,14 @@
   </component>
   <component name="ComposerSettings">
     <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="tsconfig.json" />
+        <option value="TypeScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -69,6 +73,11 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/app/_components/main" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -85,14 +94,32 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1759991209448</updated>
-      <workItem from="1759991210531" duration="942000" />
+      <workItem from="1759991210531" duration="2051000" />
     </task>
+    <task id="LOCAL-00001" summary="feat : 싹 다 날리고 헤더 다시 만들기">
+      <option name="closed" value="true" />
+      <created>1759992223465</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1759992223465</updated>
+    </task>
+    <task id="LOCAL-00002" summary="feat : 싹 다 날리고 헤더 다시 만들기">
+      <option name="closed" value="true" />
+      <created>1759992229445</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1759992229445</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <option name="LAST_COMMIT_MESSAGE" value="" />
+    <MESSAGE value="feat : 싹 다 날리고 헤더 다시 만들기" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat : 싹 다 날리고 헤더 다시 만들기" />
   </component>
 </project>
