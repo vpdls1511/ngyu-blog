@@ -8,7 +8,7 @@ import Header from '@/app/_components/layout/header'
 const inter = Inter({subsets: ['latin']})
 
 export const metadata: Metadata = {
-  title: `ngyu.me`,
+  title: `ngyu - blog`,
   description: `생각을 코드로, 경험을 글로 - Thoughts into code, experiences into words`,
   openGraph: {
     images: [HOME_OG_IMAGE_URL],
