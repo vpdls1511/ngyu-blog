@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ede60f7e-94a0-48fd-b617-cac37823c27e" name="Changes" comment="feat : 블로그완성!" />
+    <list default="true" id="ede60f7e-94a0-48fd-b617-cac37823c27e" name="Changes" comment="fix : 푸시 안된 파일이랑.. 코드 문자 깨지던 문제 해결..">
+      <change afterPath="$PROJECT_DIR$/src/app/_components/posts/post-list.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/posts/[category]/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/_components/posts/category-filter.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_components/posts/category-filter.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/posts/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/posts/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/api.ts" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -53,6 +60,7 @@
     "dart.analysis.tool.window.visible": "false",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/ngyu/Documents/Work/01_llif/project/blog/nextjs-blog/src/app/posts/read/[category]",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
@@ -65,12 +73,15 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/app/posts/read/[category]" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/app/posts" />
+      <recent name="$PROJECT_DIR$/src/app/posts/read" />
       <recent name="$PROJECT_DIR$/src/app/_components/home" />
       <recent name="$PROJECT_DIR$/src/app/_components/posts" />
       <recent name="$PROJECT_DIR$/src/app/posts/[category]" />
-      <recent name="$PROJECT_DIR$/_content/posts/dev" />
-      <recent name="$PROJECT_DIR$/src/app/_components/main" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -89,7 +100,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1759991209448</updated>
-      <workItem from="1759991210531" duration="9501000" />
+      <workItem from="1759991210531" duration="11484000" />
     </task>
     <task id="LOCAL-00001" summary="feat : 싹 다 날리고 헤더 다시 만들기">
       <option name="closed" value="true" />
@@ -123,7 +134,15 @@
       <option name="project" value="LOCAL" />
       <updated>1760017995846</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="fix : 푸시 안된 파일이랑.. 코드 문자 깨지던 문제 해결..">
+      <option name="closed" value="true" />
+      <created>1760018146553</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1760018146553</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -133,6 +152,7 @@
     <MESSAGE value="feat : 싹 다 날리고 헤더 다시 만들기" />
     <MESSAGE value="feat : 심플한 디자인으로" />
     <MESSAGE value="feat : 블로그완성!" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat : 블로그완성!" />
+    <MESSAGE value="fix : 푸시 안된 파일이랑.. 코드 문자 깨지던 문제 해결.." />
+    <option name="LAST_COMMIT_MESSAGE" value="fix : 푸시 안된 파일이랑.. 코드 문자 깨지던 문제 해결.." />
   </component>
 </project>

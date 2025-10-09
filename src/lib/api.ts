@@ -81,11 +81,26 @@ export function getPostSlugs(): Array<{ category: string; slug: string }> {
  * 슬러그로 포스트 가져오기
  */
 export function getPostBySlug(category: string, slug: string): Post | null {
-  const postPath = join(contentDirectory, "posts", category, slug);
+  // URL 디코딩
+  const decodedCategory = decodeURIComponent(category);
+  const decodedSlug = decodeURIComponent(slug);
+
+  const postPath = join(contentDirectory, "posts", decodedCategory, decodedSlug);
+
+  console.log('Looking for:', postPath);
+
   const mdPath = findMarkdownFile(postPath);
 
   if (!mdPath) {
-    console.warn(`Post not found: ${category}/${slug}`);
+    console.warn(`Post not found: ${decodedCategory}/${decodedSlug}`);
+
+    // 어떤 폴더들이 있는지 확인
+    const categoryPath = join(contentDirectory, "posts", decodedCategory);
+    if (fs.existsSync(categoryPath)) {
+      const folders = fs.readdirSync(categoryPath);
+      console.log('Available folders:', folders);
+    }
+
     return null;
   }
 
@@ -95,13 +110,13 @@ export function getPostBySlug(category: string, slug: string): Post | null {
 
     return {
       ...data,
-      category,
-      slug,
+      category: decodedCategory,
+      slug: decodedSlug,
       content,
-      assetsPath: `/_content/posts/${category}/${slug}/assets`,
+      assetsPath: `/_content/posts/${decodedCategory}/${decodedSlug}/assets`,
     } as Post;
   } catch (error) {
-    console.error(`Failed to read post: ${category}/${slug}`, error);
+    console.error(`Failed to read post: ${decodedCategory}/${decodedSlug}`, error);
     return null;
   }
 }
