@@ -1,10 +1,12 @@
 import Container from '@/app/_components/container'
 import {Intro} from '@/app/_components/home/intro'
-import {getAllPosts} from '@/lib/api'
+import {getAllPosts, getAllProjects} from '@/lib/api'
 import RecentPosts from '@/app/_components/home/recentPosts'
+import RecentProjects from '@/app/_components/home/RecentProjects'
 
 export default function Index() {
   const allPosts = getAllPosts()
+  const allProjects = getAllProjects()
 
   const morePosts = allPosts.slice(0, 10)
 
@@ -23,6 +25,8 @@ export default function Index() {
             <RecentPosts posts={morePosts}/>
           </div>
         </div>
+
+        <RecentProjects projects={allProjects} />
       </Container>
     </main>
   )

@@ -34,6 +34,14 @@ const Header = () => {
               Posts
             </Link>
 
+            {/* Projects 링크 */}
+            <Link
+              href="/projects"
+              className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
+            >
+              Projects
+            </Link>
+
             {/* Contact 링크 */}
             <Link
               href="/contact"

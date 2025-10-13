@@ -19,7 +19,8 @@ export interface Post {
 export interface Project {
   slug: string;
   title: string;
-  description: string;
+  description?: string;
+  excerpt?: string;
   date: string;
   coverImage?: string;
   content: string;
