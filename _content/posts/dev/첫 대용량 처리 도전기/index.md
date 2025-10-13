@@ -97,7 +97,7 @@ public class FileScheduleService {
     log.info("FileScheduleService - Start");
     ExecutorService executorService = Executors.newFixedThreadPool(MAX_THREAD_POOL_SIZE);
 
-		...
+	//	...
 
     log.info("FileScheduleService - end");
   }
@@ -167,7 +167,7 @@ public ArrayList<Long> processFileInParallel(
 
 사실, 멀티스레딩을 이용한 병렬처리를 모두 끝낸 다음에는 리소스를 정확하게 해제해주어야 한다. 그렇지 않으면 GC가 해제해주지 않는 이상 스레드 풀은 계속 메모리에 남아있게된다.
 
-```java
+```
 executorService.shutdown();
 ```
 
@@ -180,12 +180,12 @@ public abstract class SchedulerAbstract {
   protected void shutdownExecutorService() {
     executorService.shutdown();
     try {
-      if (!executorService.awaitTermination(SHUTDOWN_TIMEOUT, TimeUnit.SECONDS) {
-        log.error("ExecutorService TimeOut")
+      if (!executorService.awaitTermination(SHUTDOWN_TIMEOUT, TimeUnit.SECONDS)) {
+        log.error("ExecutorService TimeOut");
         executorService.shutdownNow();
       }
     } catch (InterruptedException e) {
-      log.error("ExecutorService InterruptedException")
+      log.error("ExecutorService InterruptedException");
       executorService.shutdownNow();
       Thread.currentThread().interrupt();
     }
