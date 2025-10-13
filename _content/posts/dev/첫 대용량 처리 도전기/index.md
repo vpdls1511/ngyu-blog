@@ -5,10 +5,10 @@ excerpt: "동기에서 병렬로! 2년차의 첫 대용량 처리 도전기"
 coverImage: ""
 ---
 
->처음으로 맡게된 프로젝트가 하나 있다.바로, 스케줄러를 이용하여 매일 2달이지난 파일을 삭제하는것이다.
+> 처음으로 맡게된 프로젝트가 하나 있다.바로, 스케줄러를 이용하여 매일 2달이지난 파일을 삭제하는것이다.
 >
 >**매일 약 1만개의 파일이 생성되었으며, 이 파일들이 하루이틀 지나며 1G, 2G.. nTB 까지 축적**되어있었다.
-이미 기존에 구현되어있는 시스템이 있었으나, **효율이 좋지않아 기존 구현된 서비스를 교체하기 위하여 새로 만드는것**이었다.
+> 이미 기존에 구현되어있는 시스템이 있었으나, **효율이 좋지않아 기존 구현된 서비스를 교체하기 위하여 새로 만드는것**이었다.
 
 # 파일을 어떻게 관리를 하고있었을까
 
@@ -24,9 +24,9 @@ FileUtil 에서는 deleteDirectory() 라는 메서드를 사용하여 파일을 
 
 ```java
 public class FileUtil {
-	public void deleteDirectory(File file) {
-		// ... 파일삭제 로직
-	}
+  public void deleteDirectory(File file) {
+    // ... 파일삭제 로직
+  }
 }
 ```
 
@@ -43,16 +43,16 @@ public class FileUtil {
 
 ```java
 public class FileScheduleService {
-	public void deleteFileScheduler() {
-		List<File> files = fileRepository.getAllTwoMonth();
+  public void deleteFileScheduler() {
+    List<File> files = fileRepository.getAllTwoMonth();
 
-		for (File file : files) {
-			if(checkFile(file) {
-				FileUtil.deleteDirectory(file)
-			}
-			// 이후 예외처리
-		}
-	}
+    for (File file : files) {
+      if (checkFile(file)) {
+        FileUtil.deleteDirectory(file);
+      }
+      // 이후 예외처리
+    }
+  }
 }
 ```
 
@@ -72,14 +72,14 @@ public class FileScheduleService {
 
 ### Thread
 
->**Thread를 직접 구현하는 방식은 새로운 작업마다 새로운 스레드를 생성한다.**
+> **Thread를 직접 구현하는 방식은 새로운 작업마다 새로운 스레드를 생성한다.**
 
 이 경우 수백, 수천 개의 파일을 동시에 삭제하게 되면 스레드의 개수가 폭발적으로 늘어나며, 이는 곧 운영 서버의 메모리와 CPU를 소진시켜 서비스 장애로 이어질 수 있다.
 설령 서버가 다운되지 않는다 하더라도, 스레드가 많아질수록 컨텍스트 스위칭 비용이 커져 전체 시스템에 불필요한 부하를 주게 된다.
 
 ### ExecutorService
 
->**ExecutorService는 필요한 만큼의 스레드 풀을 미리 생성해두고 이를 재사용하기 때문에, 불필요한 스레드 생성을 방지하고 운영 서버의 부하를 안정적으로 제어할 수 있다.**
+> **ExecutorService는 필요한 만큼의 스레드 풀을 미리 생성해두고 이를 재사용하기 때문에, 불필요한 스레드 생성을 방지하고 운영 서버의 부하를 안정적으로 제어할 수 있다.**
 
 풀 크기를 통해 동시에 실행 가능한 스레드 수를 제한할 수 있어, 대량 작업을 수행할 때도 서버 자원을 효율적으로 관리할 수 있다.
 더 나아가 Future와 Callable을 활용하면 각 작업의 성공/실패 여부를 손쉽게 추적할 수 있고, 모든 스케줄링이 종료된 후에는 shutdown() 같은 메서드로 리소스를 안전하게 해제할 수 있다.
@@ -91,16 +91,16 @@ public class FileScheduleService {
 
 ```java
 public class FileScheduleService {
-	private final int MAX_THREAD_POOL_SIZE = 10;
+  private final int MAX_THREAD_POOL_SIZE = 10;
 
-	public void execute() {
-		log.info("FileScheduleService - Start");
-		ExecutorService executorService = Executors.newFixedThreadPool(MAX_THREAD_POOL_SIZE);
+  public void execute() {
+    log.info("FileScheduleService - Start");
+    ExecutorService executorService = Executors.newFixedThreadPool(MAX_THREAD_POOL_SIZE);
 
 		...
 
-		log.info("FileScheduleService - end");
-	}
+    log.info("FileScheduleService - end");
+  }
 }
 ```
 
@@ -114,21 +114,25 @@ public class FileScheduleService {
 
 > Runtime.getRuntime().availableProcessors() 메소드는 JVM이 실행되고있는 시스템의 cpu 코어 개수를 알 수 있다.
 
-파일 삭제같은 경우 cpu를 통한 연산보다 디스크 I/O에 의한 대기시간이 꽤 크다. 그래서 단순히 cpu 코어 수 만큼 thread를 할당해준다면, 오히려 cpu 가 쉬는 시간이 늘어나게 되어 이처럼 I/O bound 작업에서는 cpu 의 코어 수 보다 더 많은 스레드를 두어 자원을 효율적으로 활용하는것이 좋다.
+파일 삭제같은 경우 cpu를 통한 연산보다 디스크 I/O에 의한 대기시간이 꽤 크다. 그래서 단순히 cpu 코어 수 만큼 thread를 할당해준다면, 오히려 cpu 가 쉬는 시간이 늘어나게 되어 이처럼 I/O
+bound 작업에서는 cpu 의 코어 수 보다 더 많은 스레드를 두어 자원을 효율적으로 활용하는것이 좋다.
 
-availableProcessors()를 이용하면 JVM이 실행되고있는 시스템의 코어수를 알 수 있다. 개발서버에서 확인해보니 1이 나왔는데, 이는 I/O bound 작업이 많은 경우 단순히 이 수 만큼 스레드를 두면 부족할 수 있다는것을 의미한다. 운영서버에서도 확인을 하고 싶었으나, 이거는 리스크가 좀 있어보여 단순히 4코어라 가정 후 스레드 풀의 크기를 2배, 3배 등으로 단순 계산을 해 보니 CPU 코어 수의 2배정도로 스레드를 설정하는것이 가장 합리적이라는 결론을 얻었다.
+availableProcessors()를 이용하면 JVM이 실행되고있는 시스템의 코어수를 알 수 있다. 개발서버에서 확인해보니 1이 나왔는데, 이는 I/O bound 작업이 많은 경우 단순히 이 수 만큼 스레드를
+두면 부족할 수 있다는것을 의미한다. 운영서버에서도 확인을 하고 싶었으나, 이거는 리스크가 좀 있어보여 단순히 4코어라 가정 후 스레드 풀의 크기를 2배, 3배 등으로 단순 계산을 해 보니 CPU 코어 수의
+2배정도로 스레드를 설정하는것이 가장 합리적이라는 결론을 얻었다.
 
-다만, 실제 운영하는 환경에서는 24, 36처럼 클 경우도 있다. 그렇기에 당장에 최대 10개정도 까지는 무리없이 동작하는것으로 확인되어 추후에 증가 시키더라도 availableProcessors() * 2 의 값과 기존 최대값 중 더 작은 값을 적용하도록 구현하였다.
+다만, 실제 운영하는 환경에서는 24, 36처럼 클 경우도 있다. 그렇기에 당장에 최대 10개정도 까지는 무리없이 동작하는것으로 확인되어 추후에 증가 시키더라도 availableProcessors() * 2 의 값과
+기존 최대값 중 더 작은 값을 적용하도록 구현하였다.
 
 ```java
 public class FileScheduleService {
-	private final int MAX_THREAD_POOL_SIZE = 10;
+  private final int MAX_THREAD_POOL_SIZE = 10;
 
-	public void execute() {
-		int threadPoolSize = Math.min(Runtime.getRuntime().availableProcessors() * 2, MAX_THREAD_POOL_SIZE);
-		ExecutorService executorService = Executors.newFixedThreadPool(threadPoolSize);
-		log.info("FileScheduleService thread : {}", threadPoolSize);
-	}
+  public void execute() {
+    int threadPoolSize = Math.min(Runtime.getRuntime().availableProcessors() * 2, MAX_THREAD_POOL_SIZE);
+    ExecutorService executorService = Executors.newFixedThreadPool(threadPoolSize);
+    log.info("FileScheduleService thread : {}", threadPoolSize);
+  }
 }
 ```
 
@@ -138,22 +142,22 @@ public class FileScheduleService {
 이 안에서 CompletableFuture를 이용하여 파일삭제를 병렬로 처리할 수 있게 했다.
 
 ```java
-public ArrayList<Long> processFileInParallel (
-	final List<File> fileList,
-	final ExecutorService executorService
+public ArrayList<Long> processFileInParallel(
+  final List<File> fileList,
+  final ExecutorService executorService
 ) {
-	List<CompletableFuture<Long>> future = fileList.stream()
-		.filter(file -> file.getType().contains(FILE_SYSTEM))
-		.map(file -> CompletableFuture.supplyAsync(() -> {
-			// 파일삭제 로직
-		}, executorService))
-		.collect(Collectors.toList());
+  List<CompletableFuture<Long>> future = fileList.stream()
+    .filter(file -> file.getType().contains(FILE_SYSTEM))
+    .map(file -> CompletableFuture.supplyAsync(() -> {
+      // 파일삭제 로직
+    }, executorService))
+    .collect(Collectors.toList());
 
-	return future.stream().map(it -> {
-		//삭제된 파일 id 가져오기	
-	})
-	.filter(Objects::nonNull)
-	.collect(Collectors.toCollection(ArrayList::new));
+  return future.stream().map(it -> {
+      //삭제된 파일 id 가져오기	
+    })
+    .filter(Objects::nonNull)
+    .collect(Collectors.toCollection(ArrayList::new));
 }
 ```
 
@@ -167,25 +171,25 @@ public ArrayList<Long> processFileInParallel (
 executorService.shutdown();
 ```
 
-이를 사용하면 되지만, 종종 이를 사용하여도 shutdown 중 TIMED_OUT 이 생기거나  InterruptedException이 생길 수 있다.
+이를 사용하면 되지만, 종종 이를 사용하여도 shutdown 중 TIMED_OUT 이 생기거나 InterruptedException이 생길 수 있다.
 그렇기 때문에 이런식으로 리소스 해제를 시켜주었다.
 
 ```java
 public abstract class SchedulerAbstract {
 
-	protected void shutdownExecutorService() {
-		executorService.shutdown();
-		try {
-			if(!executorService.awaitTermination(SHUTDOWN_TIMEOUT, TimeUnit.SECONDS) {
-				log.error("ExecutorService TimeOut")
-				executorService.shutdownNow();
-			}
-		} catch (InterruptedException e) {
-			log.error("ExecutorService InterruptedException")
-			executorService.shutdownNow();
-			Thread.currentThread().interrupt();
-		}
-	}
+  protected void shutdownExecutorService() {
+    executorService.shutdown();
+    try {
+      if (!executorService.awaitTermination(SHUTDOWN_TIMEOUT, TimeUnit.SECONDS) {
+        log.error("ExecutorService TimeOut")
+        executorService.shutdownNow();
+      }
+    } catch (InterruptedException e) {
+      log.error("ExecutorService InterruptedException")
+      executorService.shutdownNow();
+      Thread.currentThread().interrupt();
+    }
+  }
 }
 ```
 
@@ -196,16 +200,16 @@ public abstract class SchedulerAbstract {
 
 ```java
 public void cleanupOldFaxFiles() {
-        LocalDateTime startTime = LocalDateTime.now();
-        log.info("팩스 파일 정리 작업 시작 = {} ", startTime);
+  LocalDateTime startTime = LocalDateTime.now();
+  log.info("팩스 파일 정리 작업 시작 = {} ", startTime);
 
-        try {
-            removeFaxFileService.execute();
-            log.info("팩스 파일 정리 작업 성공적으로 완료 - 소요시간: {}ms", Duration.between(startTime, LocalDateTime.now()).toMillis());
-        }catch (Exception e){
-            log.error("팩스 파일 정리 작업 실패 - 시작시간: {}", startTime, e);
-        }
-    }
+  try {
+    removeFaxFileService.execute();
+    log.info("팩스 파일 정리 작업 성공적으로 완료 - 소요시간: {}ms", Duration.between(startTime, LocalDateTime.now()).toMillis());
+  } catch (Exception e) {
+    log.error("팩스 파일 정리 작업 실패 - 시작시간: {}", startTime, e);
+  }
+}
 
 ```
 
@@ -220,10 +224,12 @@ public void cleanupOldFaxFiles() {
 
 **운영서버에서 4-8 정도의 스레드풀 이라면** 1-2분 내외일것으로 예상된다.
 이렇게 본다면 **성능 향상은 약 5-10배정도 된다고 추정**해볼 수 잇을것같다.
+
 # 결론
 
 아직은 조금 조심스러워 해당 글에 많은것을 적지 못하였다.
-해당 스케줄러에서 DB의 부하를 최소화 하기 위해 한번에 많은 데이터를 가져오기보다 분할해서 가져와 이 풀이 다 해소될대까지 while을 돌리는 과정과, 이 while의 조건을 설정하는 등을 ScheduleContext 객체를 만들어 관리하였는데, 이와 관련된 내용은 포함하지 않았다. ( 뭔가 문제될 수 있을거같아서 .. ) 이 외에도 많은 고민을 통해 해당 시스템을 구현하였다.
+해당 스케줄러에서 DB의 부하를 최소화 하기 위해 한번에 많은 데이터를 가져오기보다 분할해서 가져와 이 풀이 다 해소될대까지 while을 돌리는 과정과, 이 while의 조건을 설정하는 등을
+ScheduleContext 객체를 만들어 관리하였는데, 이와 관련된 내용은 포함하지 않았다. ( 뭔가 문제될 수 있을거같아서 .. ) 이 외에도 많은 고민을 통해 해당 시스템을 구현하였다.
 
 개발서버에 올라간지 2주정도 지났고 테스트결과 문제 없어 조만간 배포될것으로 예상되는데, 이 서비스를 구현하며 이런 생각이 들었다.
 
