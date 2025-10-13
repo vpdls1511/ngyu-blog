@@ -29,7 +29,7 @@ export default function RootLayout({
     </head>
     <body className={inter.className}>
     <Header/>
-    <div className="min-h-screen">{children}</div>
+    <div>{children}</div>
     </body>
     </html>
   )
