@@ -24,13 +24,6 @@ export default function ContactPage() {
               href="https://github.com/vpdls1511"
               description="코드와 프로젝트를 확인하실 수 있어요"
             />
-
-            <ContactLink
-              label="Resume"
-              href="https://www.rallit.com/hub/resumes/1538040/%EA%B9%80%EB%82%A8%EA%B7%9C"
-              description="Rallit 이력서 보러가기"
-            />
-
             <ContactLink
               label="LinkedIn"
               href="https://www.linkedin.com/in/%EB%82%A8%EA%B7%9C-%EA%B9%80-78b624157/"
