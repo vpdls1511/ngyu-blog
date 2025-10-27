@@ -1,6 +1,6 @@
 ---
 title: "OptimisticLocking의 함정"
-date: "2025-08-17"
+date: "2025-10-28"
 excerpt: "ObjectOptimisticLockingFailureException이 동시성 오류가 아니라고?"
 coverImage: ""
 ---
