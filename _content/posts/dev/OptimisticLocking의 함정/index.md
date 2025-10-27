@@ -8,7 +8,7 @@ coverImage: ""
 # 이건뭘까
 리팩터링 중이었다. 평소처럼 잘 동작하던 결제 API가 갑자기 예외를 던지기 시작했다.
 
-```commandline
+```
 org.springframework.orm.ObjectOptimisticLockingFailureException: Row was updated or deleted by another transaction
 ```
 
