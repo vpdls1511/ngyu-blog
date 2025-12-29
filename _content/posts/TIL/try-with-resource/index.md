@@ -24,7 +24,7 @@ static String readFirstLine(String path) throws IOException {
     }
 }
 ```
-**readLine()**에서 예외 발생 후 **close()**를 호출해 자원을 회수하려 했으나, 오히려 close()의 예외로 readLine()의 예외를 덮어씌워 실제 원인을 알기 힘들어진다.
+**readLine()** 에서 예외 발생 후 **close()** 를 호출해 자원을 회수하려 했으나, 오히려 close()의 예외로 readLine()의 예외를 덮어씌워 실제 원인을 알기 힘들어진다.
 
 ## try-with-resources
 ```java
