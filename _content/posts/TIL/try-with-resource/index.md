@@ -1,5 +1,5 @@
 ---
-title: "try-with-resource"
+title: "try-with-resources"
 date: "2025-12-29"
 excerpt: "자원을 회수하기 위한 최적의 방법"
 coverImage: ""
@@ -42,7 +42,7 @@ static String readFirstLine(String path) throws IOException {
 1. 어떻게 자동으로 close()를 호출하고, suppressed로 기록을 해두는걸까?
 2. 왜 try-with-resources 일까?
 
-이 두 가지 궁금증에서 try-with-resource에 대해서 조금 더 알아보기로 했다.
+이 두 가지 궁금증에서 try-with-resources에 대해서 조금 더 알아보기로 했다.
 
 ## 1. AutoCloseable의 close()
 > Java7 에서는 **명시적인 자원 해제를 보장**함과 동시에 **예외 처리를 개선**하기 위해 탄생한 인터페이스다.   
@@ -139,7 +139,7 @@ try (BufferedReader br = new BufferedReader(...)) {
 }
 ```
 
-해당 코드를 보면, **br이 "resource"에 해당하는 "시스템 리소스"다.**
+해당 코드를 보면, **br이 "resources"에 해당하는 "시스템 리소스"다.**
 
 # 정리
 > try-with-resources는 AutoCloseable을 구현한 자원에 대해 컴파일러가 자동으로 close()를 호출하고, 예외 발생 시 주 예외와 close 예외를 모두 추적할 수 있게 해준다.
